@@ -43,7 +43,11 @@ To record something newsworthy, just do this:
 
 To find out what interesting things a particular user has done:
 
-    $ user.read_all_about_it
+    $ Extra::Extra.read_all_about_it user
+
+or
+
+    $ Extra::Extra.the_scoop user
 
 This returns an array of Extra objects. To find out more about a particular
  Extra:

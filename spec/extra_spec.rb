@@ -34,4 +34,18 @@ describe Extra::Extra do
       Extra::Extra::! :breaking, user, "hit a home run"
     end
   end
+
+  describe "#read_all_about_it" do
+
+    it "should exist" do
+      Extra::Extra.respond_to?(:read_all_about_it).should == true
+    end
+
+    it "should return Extras for the user" do
+      user = mock("User", :id => 1, :class => "User")
+      Extra::Extras.should_receive(:new).with(:who_id => 1, :who_class => "User")
+
+      Extra::Extra.read_all_about_it(user)
+    end
+  end
 end
