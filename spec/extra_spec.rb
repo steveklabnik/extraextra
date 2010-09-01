@@ -18,10 +18,20 @@ describe Extra::Extra do
   end
 
   describe "self#!" do
-    it "should call #new" do
-      #this doesn't work. ideas?
-      #Extra::Extra.should_receive(:new)
-      #Extra::Extra::!
+
+    it "should take three args and save them" do
+      #holy setup batman
+      extra = mock("Extra")
+      Extra::Extra.should_receive(:new).and_return(extra)
+      extra.should_receive(:category=).with(:breaking)
+      extra.should_receive(:who_id=).with(1)
+      extra.should_receive(:who_name=).with("steve")
+      extra.should_receive(:who_class=).with('User')
+      extra.should_receive(:what=).with("hit a home run")
+      extra.should_receive(:when=)
+
+      user = mock("User", :id => 1, :class => 'User', :username => "steve")
+      Extra::Extra::! :breaking, user, "hit a home run"
     end
   end
 end
