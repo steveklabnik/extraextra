@@ -4,6 +4,7 @@
 tmtags
 
 *~
+<<<<<<< HEAD
 \#*
 .\#*
 
@@ -12,3 +13,7 @@ tmtags
 coverage
 rdoc
 pkg
+=======
+.bundle/*
+*.swp
+>>>>>>> setting up rspec
