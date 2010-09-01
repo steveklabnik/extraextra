@@ -7,7 +7,7 @@ describe Extra::Extra do
 
   describe "#source" do
     it "should exist" do
-      Extra::Extra.source
+      Extra::Extra.respond_to?(:source).should == true
     end
 
     it "should set Candy.host and Candy.port" do
@@ -15,6 +15,13 @@ describe Extra::Extra do
       Candy.should_receive(:port=).with(1337)
       Extra::Extra.source :host => "localhost", :port => 1337
     end
+  end
 
+  describe "self#!" do
+    it "should call #new" do
+      #this doesn't work. ideas?
+      #Extra::Extra.should_receive(:new)
+      #Extra::Extra::!
+    end
   end
 end
