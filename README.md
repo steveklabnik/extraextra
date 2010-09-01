@@ -45,24 +45,22 @@ To find out what interesting things a particular user has done:
 
     $ user.read_all_about_it
 
-This returns an array of Headline objects. To find out more about a particular
- Headline:
+This returns an array of Extra objects. To find out more about a particular
+ Extra:
 
-    $ headline = Extra::Extra::! :sports, user, "hit a home run!"
+    $ extra = Extra::Extra::! :sports, user, "hit a home run!"
 
-Yes, Extra::Extra::! is an alias for Headline.new. Sue me.
-
-    $ headline.who?
+    $ extra.who?
      => #<User:0x0000010089ea80> 
-    $ headline.what?
+    $ extra.what?
      => "hit a home run"
-    $ headline.where?
+    $ extra.where?
      => nil # currently undecided
-    $ headline.when?
+    $ extra.when?
      => 1283311813 
-    $ headline.how?
+    $ extra.how?
      => nil # currently undecided
-    $ headline.to_s
+    $ extra.to_s
      => "Steve hit a home run"
 
 The name in to_s comes from user#username. If you use something else... 
