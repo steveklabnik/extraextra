@@ -1,37 +1,37 @@
-require 'candy'
+require 'mongo'
+include Mongo
 
 module Extra
-  class Extras
-    include Candy::Collection
-    collects :extra
-  end
 
   class Extra
-    include Candy::Piece
+
 
     class << self
+      attr_accessor :db, :collection
 
       def source opts={}
         opts[:host] ||= "localhost"
-        Candy.host = opts[:host]
         opts[:port] ||= 27017
-        Candy.port = opts[:port]
+        self.db = Mongo::Connection.new(opts[:host], opts[:port]).db("extraextra")
+        self.collection = db["extras"]
       end
 
       def !(category, user, text)
-        extra = Extra.new
-        extra.category = category
-        extra.who_id = user.id
-        extra.who_name = user.username
-        extra.who_class = user.class
-        extra.what = text
-        extra.when = Time.now
+        collection.insert category: category,
+                           who_id: user.id,
+                           who_name: user.username,
+                           who_class: user.class.to_s,
+                           what: text,
+                           when: Time.now.to_s
       end
 
       def read_all_about_it user
-        Extras.new(:who_id => user.id, :who_class => user.class)
+        
+        collection.find(who_id: user.id,
+                        who_class: user.class.to_s
+                       ).to_a
+        
       end
-
     end
 
   end
