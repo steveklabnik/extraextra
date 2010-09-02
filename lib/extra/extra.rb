@@ -58,6 +58,9 @@ module Extra
                        ).collect{|args| Extra.new args }
         
       end
+
+      # aliasing a shorter name
+      alias :the_scoop :read_all_about_it 
     end
 
   end

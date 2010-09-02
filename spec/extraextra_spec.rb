@@ -55,4 +55,10 @@ describe Extra::Extra do
       ex.to_s.should == extra.to_s
     end
   end
+
+  describe "#the_scoop" do
+    it "should exist" do
+      Extra::Extra.respond_to?(:the_scoop).should == true
+    end
+  end
 end
