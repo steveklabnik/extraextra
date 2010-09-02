@@ -75,6 +75,17 @@ module Extra
 
       # aliasing a shorter name
       alias :the_scoop :read_all_about_it 
+
+      # catches *_news to filter out the news
+      def method_missing(m, *args)
+        super unless m.to_s =~ /^(\w+)_news$/
+        user = args.first
+        params = {}
+        params = {who_id: user.id, who_class: user.class.to_s} unless user.nil?
+        params[:category] = $1
+        collection.find(params).collect{|args| Extra.new args }
+      end
+
     end
 
   end

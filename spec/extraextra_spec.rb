@@ -75,4 +75,17 @@ describe Extra::Extra do
     end
 
   end
+
+  describe "#*_news" do
+
+    it "should filter some news" do
+      user = Factory(:user)
+      Extra::Extra.source
+      extra = Extra::Extra::! :breaking, user, "hit a home run"
+      extra = Extra::Extra::! :boooring, user, "just ran a test"
+
+      Extra::Extra.breaking_news.length.should == 1
+
+    end
+  end
 end
