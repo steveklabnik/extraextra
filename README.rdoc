@@ -52,8 +52,8 @@ or
 
     $ Extra::Extra.the_scoop user
 
-This returns an array of Extra objects. To find out more about a particular
- Extra:
+This returns an array of Extra objects. To find out more about a particular 
+Extra:
 
     $ extra = Extra::Extra::! :sports, user, "hit a home run!"
 
