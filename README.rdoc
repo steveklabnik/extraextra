@@ -77,13 +77,20 @@ provide a way to override these eventually.
 
 To only see breaking news:
 
-    $ user.breaking_news
+    $ Extra::Extra.breaking_news
 
-This will filter out only the news in the 'breaking' category.
+This will filter out only the news in the 'breaking' category. You can pass an 
+optional user:
+
+    $ Extra::Extra.breaking_news user
+
+This will only show breaking news for this specific user.
 
 To find out what interesting things a users's friends have done:
 
-    $ user.scope_the_scene
+    $ Extra::Extra.scope_the_scene user
+
+This also takes an optional user, just like *_news.
 
 To define what who you're friends with, make a method on your user model
 named my_peeps. For a (hypothetical) example:
