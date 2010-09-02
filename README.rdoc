@@ -1,13 +1,8 @@
 = EXTRA! EXTRA! READ ALL ABOUT IT!
 
-Need to add a news feed to your application? EXTRA! EXTRA! is just the Gem 
-for you! This is a common need for many social applications. EXTRA! EXTRA! 
-uses MongoDB to give you super fast, super convenient feeds.
+Need to add a news feed to your application? EXTRA! EXTRA! is just the Gem for you! This is a common need for many social applications. EXTRA! EXTRA! uses MongoDB to give you super fast, super convenient feeds.
 
-== Quick Note
-
-Not all of this works yet. This is just a prerelease. README driven
-development FTW!
+Oh, and when I say "news feed", think "activity feed," not RSS. The stuff that's on the dashboard of every social app ever.
 
 == Install
 
@@ -34,8 +29,7 @@ It can be cloned via
 
 == Usage
 
-The first thing you'll need to do is configure EXTRA! EXTRA! to connect to
-your MongoDB:
+The first thing you'll need to do is configure EXTRA! EXTRA! to connect to your MongoDB:
 
     Extra::Extra.source :host => "localhost", :port => "1337"
 
@@ -51,8 +45,7 @@ or
 
     $ Extra::Extra.the_scoop user
 
-This returns an array of Extra objects. To find out more about a particular 
-Extra:
+This returns an array of Extra objects. To find out more about a particular Extra:
 
     $ extra = Extra::Extra::! :sports, user, "hit a home run!"
 
@@ -69,17 +62,13 @@ Extra:
     $ extra.to_s
      => "Steve hit a home run"
 
-Two things: 'who' instantiates the object by sending it the find message, 
-passing an id. So that has to be defined in your user object. Secondly, the 
-name in to_s comes from user#username. If you use something else... I'll 
-provide a way to override these eventually.
+Two things: 'who' instantiates the object by sending it the find message, passing an id. So that has to be defined in your user object. Secondly, the name in to_s comes from user#username. If you use something else... I'll provide a way to override these eventually.
 
 To only see breaking news:
 
     $ Extra::Extra.breaking_news
 
-This will filter out only the news in the 'breaking' category. You can pass an 
-optional user:
+This will filter out only the news in the 'breaking' category. You can pass an optional user:
 
     $ Extra::Extra.breaking_news user
 
@@ -89,7 +78,7 @@ To find out what interesting things a users's friends have done:
 
     $ Extra::Extra.scope_the_scene user
 
-This also takes an optional user, just like *_news.
+This also takes a user, just like *_news.
 
 To define what who you're friends with, make a method on your user model
 named my_peeps. For a (hypothetical) example:
@@ -102,6 +91,16 @@ named my_peeps. For a (hypothetical) example:
 
 The my_peeps method should return an Array of ids. This method will be 
 called during scope_the_scene to determine what results get returned.
+
+== Roadmap
+
+1.0.0 was the release that implements the most basic functionality that I needed. I plan on integrating EXTRA! EXTRA! into a few of my projects, and seeing what could be useful. But here's a few things that are rolling around in my brain:
+
+* Limits on most queries. This'll probably get added real quick.
+* Generators for Rails that cover common use cases.
+* Possibly allowing for extra metadata to be attached to each Extra.
+
+We'll just roll with the punches. I'd love to hear some ideas.
 
 == Note on Patches/Pull Requests
  
