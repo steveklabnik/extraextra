@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{extraextra}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Steve Klabnik"]
@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
   s.email = %q{steve@steveklabnik.com}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.md",
      "README.rdoc"
   ]
   s.files = [
@@ -23,7 +22,6 @@ Gem::Specification.new do |s|
      "Gemfile",
      "Gemfile.lock",
      "LICENSE",
-     "README.md",
      "README.rdoc",
      "Rakefile",
      "VERSION",
@@ -31,6 +29,7 @@ Gem::Specification.new do |s|
      "lib/extra/extra.rb",
      "lib/extraextra.rb",
      "spec/extraextra_spec.rb",
+     "spec/factories/user.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "test.rb"
@@ -42,6 +41,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Super simple news feeds powered by MongoDB.}
   s.test_files = [
     "spec/extraextra_spec.rb",
+     "spec/factories/user.rb",
      "spec/spec_helper.rb"
   ]
 
