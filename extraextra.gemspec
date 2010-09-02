@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{extraextra}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Steve Klabnik"]
-  s.date = %q{2010-09-01}
+  s.date = %q{2010-09-02}
   s.description = %q{Need to add a news feed to your application? EXTRA! EXTRA! is just the Gem for you! This is a common need for many social applications. EXTRA! EXTRA! uses MongoDB to give you super fast, super convenient feeds.}
   s.email = %q{steve@steveklabnik.com}
   s.extra_rdoc_files = [
