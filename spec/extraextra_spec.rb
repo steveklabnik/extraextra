@@ -78,14 +78,24 @@ describe Extra::Extra do
 
   describe "#*_news" do
 
-    it "should filter some news" do
+    it "should filter some breaking news" do
       user = Factory(:user)
       Extra::Extra.source
       extra = Extra::Extra::! :breaking, user, "hit a home run"
       extra = Extra::Extra::! :boooring, user, "just ran a test"
 
       Extra::Extra.breaking_news.length.should == 1
-
     end
+
+    it "should filter some breaking news with a user" do
+      steve = Factory(:user)
+      nobody = Factory(:user, :id => "2", :username => "nobody")
+      Extra::Extra.source
+      extra = Extra::Extra::! :breaking, steve, "hit a home run"
+      extra = Extra::Extra::! :breaking, nobody, "hit a home run"
+
+      Extra::Extra.breaking_news(steve).length.should == 1
+    end
+
   end
 end
