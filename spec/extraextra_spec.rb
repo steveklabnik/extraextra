@@ -10,8 +10,8 @@ describe Extra::Extra do
       obj = mock("Connection")
       db = mock("db")
       db.should_receive(:[])
-      obj.should_receive(:db).with("extraextra").and_return(db)
-      Mongo::Connection.should_receive(:new).with("localhost", 1337).and_return(obj)
+      obj.should_receive(:db).with("extraextra").twice.and_return(db)
+      Mongo::Connection.should_receive(:new).twice.and_return(obj)
       Extra::Extra.should_receive(:db=).and_return(db)
       Extra::Extra.should_receive(:db).and_return(db)
       
@@ -39,14 +39,20 @@ describe Extra::Extra do
     end
 
     it "should return Extras for the user" do
-      user = mock("User", :id => 1, :class => "User")
-      extra = mock("Extra")
-      collection = mock("collection")
-      collection.should_receive(:find).with(:who_id=>1, :who_class=>"User").and_return([extra])
-      Extra::Extra.should_receive(:collection).and_return(collection)
+      user = Factory(:user)
+      Extra::Extra.source
+      extra = Extra::Extra::! :breaking, user, "hit a home run"
       
       extras = Extra::Extra.read_all_about_it(user)
-      extras.should == [extra]
+      extras.length.should == 1
+      ex = extras.first
+      ex.category.should == extra.category
+      ex.who_id.should == extra.who_id
+      ex.who_name.should == extra.who_name
+      ex.who_class.should == extra.who_class
+      ex.what.should == extra.what
+      ex.when.should == extra.when
+      ex.to_s.should == extra.to_s
     end
   end
 end
