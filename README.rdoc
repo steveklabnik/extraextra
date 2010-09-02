@@ -70,8 +70,10 @@ Extra:
     $ extra.to_s
      => "Steve hit a home run"
 
-The name in to_s comes from user#username. If you use something else... 
-I'll provide a way to override this eventually.
+Two things: 'who' instantiates the object by sending it the find message, 
+passing an id. So that has to be defined in your user object. Secondly, the 
+name in to_s comes from user#username. If you use something else... I'll 
+provide a way to override these eventually.
 
 To only see breaking news:
 
