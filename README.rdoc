@@ -29,13 +29,14 @@ It can be cloned via
 
 == Requirements
 
-* **Ruby 1.9** Sorry for you 1.8 people, 1.9 is the current version of Ruby.
-* **mongo** If you're going to use MongoDB...
+* *Ruby-1.9* Sorry for you 1.8 people, 1.9 is the current version of Ruby.
+I test with 1.9.2.
+* *mongo* If you're going to use MongoDB...
 
 == Usage
 
-The first thing you'll need to do is configure EXTRA! EXTRA! to use your 
-MongoDB installation. 
+The first thing you'll need to do is configure EXTRA! EXTRA! to connect to
+your MongoDB:
 
     Extra::Extra.source :host => "localhost", :port => "1337"
 
