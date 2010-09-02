@@ -6,6 +6,7 @@ class User
   def id; 1 end
   def username=(username); end
   def username; "steve" end
+  def self.find(id); User.new end
 
 end
 

@@ -14,10 +14,24 @@ module Extra
                   :what,
                   :when
 
+    def initialize opts={}
+      self.category  ||= opts['category']
+      self.who_id    ||= opts['who_id']
+      self.who_name  ||= opts['who_name']
+      self.who_class ||= opts['who_class']
+      self.what      ||= opts['what']
+      self.when      ||= opts['when']
+    end
+
     # For now, this is just a simple sentence describing what happened.
     # We'll see if something more complex makes sense later.
     def to_s
       "#{who_name} #{what}"
+    end
+
+    #returns the instantiated object of whodunnit
+    def who
+      Object.const_get(who_class).find(who_id)
     end
 
     class << self
@@ -39,12 +53,12 @@ module Extra
       def !(category, user, text)
 
         args = {
-          category: category,
-          who_id: user.id,
-          who_name: user.username,
-          who_class: user.class.to_s,
-          what: text,
-          when: Time.now.to_s 
+          'category' => category,
+          'who_id' => user.id,
+          'who_name' => user.username,
+          'who_class' => user.class.to_s,
+          'what' => text,
+          'when' => Time.now.to_s 
         }
         collection.insert args
         Extra.new args

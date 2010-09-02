@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Extra::Extra do
-  describe "#source" do
+  describe "self#source" do
     it "should exist" do
       Extra::Extra.respond_to?(:source).should == true
     end
@@ -25,14 +25,14 @@ describe Extra::Extra do
       #holy setup batman
       collection = mock("collection")
       Extra::Extra.should_receive(:collection).and_return(collection)
-      collection.should_receive(:insert).with(:category => :breaking, :who_id => 1, :who_name => "steve", :who_class => 'User', :what => "hit a home run", :when => Time.now.to_s)
+      collection.should_receive(:insert).with('category' => :breaking, 'who_id' => 1, 'who_name' => "steve", 'who_class' => 'User', 'what' => "hit a home run", 'when' => Time.now.to_s)
 
       user = mock("User", :id => 1, :class => 'User', :username => "steve")
       Extra::Extra::! :breaking, user, "hit a home run"
     end
   end
 
-  describe "#read_all_about_it" do
+  describe "self#read_all_about_it" do
 
     it "should exist" do
       Extra::Extra.respond_to?(:read_all_about_it).should == true
@@ -47,18 +47,32 @@ describe Extra::Extra do
       extras.length.should == 1
       ex = extras.first
       ex.category.should == extra.category
-      ex.who_id.should == extra.who_id
-      ex.who_name.should == extra.who_name
-      ex.who_class.should == extra.who_class
+      ex.who_id.should == user.id
+      ex.who_name.should == user.username
+      ex.who_class.should == user.class.to_s
       ex.what.should == extra.what
       ex.when.should == extra.when
       ex.to_s.should == extra.to_s
     end
   end
 
-  describe "#the_scoop" do
+  describe "self#the_scoop" do
     it "should exist" do
       Extra::Extra.respond_to?(:the_scoop).should == true
     end
+  end
+
+  describe "#who" do
+    it "should instantiate the object" do
+      user = Factory(:user)
+      Extra::Extra.source
+      extra = Extra::Extra::! :breaking, user, "hit a home run"
+
+      u = extra.who
+      u.class.should == User
+      u.id.should == user.id
+    
+    end
+
   end
 end
