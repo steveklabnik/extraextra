@@ -3,6 +3,8 @@ include Mongo
 
 module Extra
 
+  # Extra is the main class in Extra! Extra! It's what gets returned from
+  # queries, and is the main interface to the entire system. 
   class Extra
 
     attr_accessor :category,
@@ -11,6 +13,9 @@ module Extra
                   :who_class,
                   :what,
                   :when
+
+    # For now, this is just a simple sentence describing what happened.
+    # We'll see if something more complex makes sense later.
     def to_s
       "#{who_name} #{what}"
     end
@@ -18,6 +23,9 @@ module Extra
     class << self
       attr_accessor :db, :collection
 
+      # The source method is used to set up the connection to MongoDB. Right now
+      # it has to be called by the user before doing anything else, which sucks.
+      # I'll probably add in something to make it autoconnect soon.
       def source opts={}
         opts[:host] ||= "localhost"
         opts[:port] ||= 27017
@@ -25,6 +33,9 @@ module Extra
         self.collection = db["extras"]
       end
 
+      # Extra::Extra.! is the method used to report what's going on. It takes a
+      # symbol for a category, the user who did whatever's newsworthy, and some
+      # text that describes what happened.
       def !(category, user, text)
 
         args = {
@@ -39,6 +50,7 @@ module Extra
         Extra.new args
       end
 
+      # This method returns all Extras that are associated with a given person.
       def read_all_about_it user
         
         collection.find(who_id: user.id,
