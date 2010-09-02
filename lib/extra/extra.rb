@@ -86,7 +86,16 @@ module Extra
         collection.find(params).collect{|args| Extra.new args }
       end
 
-    end
+      # gets friend stuff
+      def scope_the_scene user
+        params = {
+          who_id: {"$in" => user.my_peeps},
+          who_class: user.class.to_s
+        }
+        collection.find(params).collect{|args| Extra.new args }
+      end
+
+    end #end the class << self
 
   end
 end

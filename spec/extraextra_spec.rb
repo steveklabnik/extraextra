@@ -89,7 +89,7 @@ describe Extra::Extra do
 
     it "should filter some breaking news with a user" do
       steve = Factory(:user)
-      nobody = Factory(:user, :id => "2", :username => "nobody")
+      nobody = Factory(:user, :id => 2, :username => "nobody")
       Extra::Extra.source
       extra = Extra::Extra::! :breaking, steve, "hit a home run"
       extra = Extra::Extra::! :breaking, nobody, "hit a home run"
@@ -97,5 +97,26 @@ describe Extra::Extra do
       Extra::Extra.breaking_news(steve).length.should == 1
     end
 
+  end
+
+  describe "self#scope_the_scene" do
+    it "should exist" do
+      Extra::Extra.respond_to?(:scope_the_scene).should == true
+    end
+
+    it "should properly filter news" do
+      steve = Factory(:user)
+      maria = Factory(:user, :id => 2, :username => "maria")
+      nobody = Factory(:user, :id => 3, :username => "nobody")
+      steve.friends = [2]
+      Extra::Extra.source
+      extra = Extra::Extra::! :breaking, nobody, "hit a home run"
+      extra = Extra::Extra::! :breaking, nobody, "hit a home run"
+      extra = Extra::Extra::! :breaking, maria, "hit a home run"
+      extra = Extra::Extra::! :breaking, maria, "hit a home run"
+      extra = Extra::Extra::! :breaking, maria, "hit a home run"
+
+      Extra::Extra.scope_the_scene(steve).length.should == 3
+    end
   end
 end
