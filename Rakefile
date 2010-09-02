@@ -1,17 +1,19 @@
-<<<<<<< HEAD
-require 'rubygems'
-require 'rake'
+require "rubygems"
+require "bundler/setup"
+
+#require 'rake'
 
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "extraextra"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Super simple news feeds powered by MongoDB.}
+    gem.description = %Q{Need to add a news feed to your application? EXTRA! EXTRA! is just the Gem for you! This is a common need for many social applications. EXTRA! EXTRA! uses MongoDB to give you super fast, super convenient feeds.}
     gem.email = "steve@steveklabnik.com"
     gem.homepage = "http://github.com/steveklabnik/extraextra"
     gem.authors = ["Steve Klabnik"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_development_dependency "rspec", "=1.3.0"
+    gem.add_dependency "mongo", "=1.0.8"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
@@ -44,4 +46,3 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
-

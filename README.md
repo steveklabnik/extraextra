@@ -5,6 +5,11 @@ Need to add a news feed to your application? EXTRA! EXTRA! is just the Gem
 for you! This is a common need for many social applications. EXTRA! EXTRA! 
 uses MongoDB to give you super fast, super convenient feeds.
 
+## Quick Note ###############################################################
+
+Not all of this works yet. This is just a prerelease. README driven
+development FTW!
+
 ## Install ##################################################################
 
 EXTRA! EXTRA! will be distributed via Rubygems, so just 
@@ -12,7 +17,6 @@ EXTRA! EXTRA! will be distributed via Rubygems, so just
     $ gem install extraextra
 
 and you'll be reading the news in no time!
-
 
 ## Source ###################################################################
 
@@ -27,8 +31,7 @@ It can be cloned via
 ## Requirements #############################################################
 
 * **Ruby 1.9** Sorry for you 1.8 people, 1.9 is the current version of Ruby.
-* **candy** Simple, lightweight, 'orm' for MongoDB. 
-* **MongoDB 1.4** This is a candy requirement, and 1.6 is current, anyway.
+* **mongo** If you're going to use MongoDB...
 
 ## Usage ####################################################################
 
